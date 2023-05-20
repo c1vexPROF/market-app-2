@@ -1,0 +1,98 @@
+
+.header1{
+    margin-bottom: 30px;
+    font-family: 'Montserrat';
+    &-div{
+        display: flex;
+        max-width: 1321px;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        &-logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &-searcher{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            width: 240px;
+        }
+        &-info{
+            display: flex;
+            margin-left: 10px;
+            &-1{
+                margin-left: 10px;
+                &-1{
+                    font-size:16px;
+                }
+                &-2{
+                    font-size:20px;
+                }
+            }
+            &-2{
+                margin-left: 10px;
+                &-1{
+                    font-size:16px;
+                }
+                &-2{
+                    font-size:20px;
+                }
+            }
+        }
+        &-busket{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+        }
+        &-language{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            &-btn{
+                margin-left: 30px;
+                border-radius: 5px;
+            }
+        }
+        &-2level{
+            display: flex;
+            max-width: 1321px;
+            margin-top: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top:15px;
+            padding-bottom:15px;
+            border-bottom:1px solid black;
+            border-top:1px solid black;
+            width: 100%;
+            &-btns{
+                margin-left: auto;
+                margin-right: auto;
+                &-btn{
+                    margin-left: 15px;
+                }
+            }
+            &-catalog{
+                
+            }
+        }
+    }
+}
+.slider{
+    width: 1321px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 650px;
+    &-img{
+        width: 100%;
+        height: 650px;
+    }
+}
+p{
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
