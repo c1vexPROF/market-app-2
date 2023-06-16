@@ -1,7 +1,10 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import MainContainer from "./Mains/MainContainer";
+import MainContainer from "./Mains/Main1Container";
+import Akcii from './Akcii/Akcii'
+import News from './News/News'
+import CatalogContainer from "./Catalog/CatalogContainer";
 
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
@@ -11,8 +14,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/main"
-            element={<MainContainer test1={undefined} test2={undefined} match={"/main"} />}
+            path="/mainpage"
+            element={<MainContainer/>}
+          />
+          <Route
+            path="/catalog"
+            element={<CatalogContainer empty={undefined} />}
+          />
+          <Route
+            path="/akcii"
+            element={<Akcii/>}
+          />
+          <Route
+            path="/news"
+            element={<News/>}
           />
         </Routes>
       </BrowserRouter>

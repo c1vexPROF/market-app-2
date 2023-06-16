@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/header1.scss";
 import logo from "../images/logo-market.png";
 import busketLogo from "../images/busketLogo.png";
@@ -6,28 +6,81 @@ import { IconHamburger } from "@consta/icons/IconHamburger";
 import { IconSearchStroked } from "@consta/icons/IconSearchStroked";
 import { TextField } from "@consta/uikit/TextField";
 import { Button } from "@consta/uikit/Button";
+import { Modal } from "@consta/uikit/Modal";
 import { Theme, presetGpnDefault } from "@consta/uikit/Theme";
 import sakha from "../images/sakha.png";
 import rus from "../images/rus.png";
+import Catalog, { DataApi } from "../Catalog/Catalog";
+import Basket from "../Basket/Basket";
+import { useStoredData } from "../useLocalStorage/useLocalStorage";
 
-export default function Header1() {
+type OneOfObject<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
+  U[keyof U];
+
+interface Props {
+  cartItems: any;
+  addToCart: any;
+  removeFromCart: any;
+  totalCostInHeader: any;
+}
+
+export default function Header1(props: OneOfObject<Props>) {
+
+
+  const [cartOpen, setCartOpen] = useState(false);
+
   const [value, setValue] = useState<string | null>(null);
   const handleChange = ({ value }: { value: string | null }) => setValue(value);
 
+  const [totalCostShow, setTotalCostShow]=useState<any>();
+  useEffect(()=>{
+    setTotalCostShow(localStorage.getItem("inputValue"))
+  })
+
   return (
     <Theme preset={presetGpnDefault}>
+      {/* <div>
+        <Button
+          onClick={() => {
+            setCartStore(props.cartItems);
+          }}
+          label="сохранить/сбросить корзину"
+        />
+      </div> */}
+      <div>
+        {/* <p>Сохраненные:</p> */}
+        {/* <p>{cartStore?.map(cartStore=><div>{cartStore.code}</div>)}</p> */}
+      </div>
+      <Modal
+        className=""
+        isOpen={cartOpen}
+        hasOverlay={false}
+        onClickOutside={() => setCartOpen(false)}
+        onEsc={() => {
+          setCartOpen(false);
+        }}
+      >
+        <Basket
+          cartItems={props.cartItems}
+          addToCart={props.addToCart}
+          removeFromCart={props.removeFromCart}
+        />
+      </Modal>
+
       <div className="header1">
         <div className="header1-div">
-          <div className="header1-div-logo">
-            <img src={logo} />
-          </div>
+          <a href="/mainpage">
+            <div className="header1-div-logo">
+              <img src={logo} />
+            </div>
+          </a>
           <div className="header1-div-searcher">
             <TextField
               className="header1-div-searcher-field"
               onChange={handleChange}
               value={value}
               type="text"
-              placeholder="Одна строчка"
+              placeholder="Введите запрос"
             />
             <Button onlyIcon iconLeft={IconSearchStroked} />
           </div>
@@ -48,11 +101,18 @@ export default function Header1() {
                 className="header1-div-busket-buttons-btn"
                 form="defaultBrick"
                 // iconRight=""
+                onClick={() => {
+                  setCartOpen(true);
+                }}
               />
               <Button
-                label="570 руб."
-                className="header1-div-busket-buttons-summ"
+                label={totalCostShow ? totalCostShow + " руб." : "0" + " руб."} 
+                className="header1-div-busket-buttons-btn"
+                // iconRight=""
                 form="brickDefault"
+                onClick={() => {
+                  setCartOpen(true);
+                }}
               />
             </div>
           </div>
@@ -66,20 +126,24 @@ export default function Header1() {
           </div>
         </div>
         <div className="header1-div-2level">
-          <div className="header1-div-2level-catalog">
-            <Button
-              label="Каталог"
-              form="default"
-              className="header1-div-2level-catalog-btn"
-              iconRight={IconHamburger}
-            />
-          </div>
+          <a href="/catalog">
+            <div className="header1-div-2level-catalog">
+              <Button
+                label="Каталог"
+                form="default"
+                className="header1-div-2level-catalog-btn"
+                iconRight={IconHamburger}
+              />
+            </div>
+          </a>
           <div className="header1-div-2level-btns">
-            <Button
-              label="Акции"
-              form="default"
-              className="header1-div-2level-btns-btn"
-            />
+            <a href="/akcii">
+              <Button
+                label="Акции"
+                form="default"
+                className="header1-div-2level-btns-btn"
+              />
+            </a>
             <Button
               label="Вакансии"
               form="default"
@@ -90,11 +154,13 @@ export default function Header1() {
               form="default"
               className="header1-div-2level-btns-btn"
             />
-            <Button
-              label="Новости"
-              form="default"
-              className="header1-div-2level-btns-btn"
-            />
+            <a href="/news">
+              <Button
+                label="Новости"
+                form="default"
+                className="header1-div-2level-btns-btn"
+              />
+            </a>
             <Button
               label="Покупателям"
               form="default"
@@ -103,7 +169,6 @@ export default function Header1() {
           </div>
         </div>
       </div>
-      
     </Theme>
   );
 }
