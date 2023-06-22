@@ -16,7 +16,6 @@ type OneOfObject<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   handleAddToCart: (clickedItem: DataApi) => void;
 };
 const Tovar: React.FC<Props> = ({ item, handleAddToCart, itemImg }) => (
-  
   <Theme preset={presetGpnDefault}>
     <div className="tovar">
       <div className="tovar-div">

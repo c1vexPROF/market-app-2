@@ -1,0 +1,38 @@
+.modal{
+    padding:30px;
+    &-contacts{
+        &-btns{
+            display: flex;
+        }
+        &-window{
+            &-image{
+                margin:30px;
+            }
+        }
+        &-img{
+            &-btn{
+                margin-top: 30px;
+                &-path{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.modalwindow{
+    padding: 30px;
+}
+.admin{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+    &-modal{
+        &-img{
+            background-size: 100% 100%;
+            height: 450px;
+            width: 600px;
+            background-repeat: no-repeat;
+        }
+    }
+}

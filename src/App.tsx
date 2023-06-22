@@ -5,6 +5,7 @@ import MainContainer from "./Mains/Main1Container";
 import Akcii from './Akcii/Akcii'
 import News from './News/News'
 import CatalogContainer from "./Catalog/CatalogContainer";
+import AdminContainer from "./AdminPanel/AdminContainer";
 
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/news"
             element={<News/>}
+          />
+          <Route
+            path="/admin"
+            element={<AdminContainer empty={undefined}/>}
           />
         </Routes>
       </BrowserRouter>

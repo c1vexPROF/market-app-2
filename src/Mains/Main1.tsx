@@ -69,7 +69,6 @@ export default function Main1(props: OneOfObject<BasketData>) {
   };
   let getBasketContainer = async () => {
     let dataTestBasket: any = await getBasketAction();
-    // let dataTestBasketConverted = dataTestBasket?.data;
     setTest2(dataTestBasket);
   };
   useEffect(() => {

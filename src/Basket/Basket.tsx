@@ -29,11 +29,9 @@ const Basket: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
     setTestData(totalCostConverted);
     localStorage.setItem("inputValue" , testData);
   })
-  
   function resetCart(){
     localStorage.removeItem("inputValue")
   }
-
   let totalCostConverted = totalCost.toLocaleString("en") 
   console.log(totalCost);
   return (
